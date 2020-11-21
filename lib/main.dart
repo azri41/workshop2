@@ -8,11 +8,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Alan Basic Example',
+      title: 'iCare - Drugs Recommender System',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Alan Basic Example'),
+      home: MyHomePage(title: 'iCare'),
     );
   }
 }
