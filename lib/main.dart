@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:alan_voice/alan_voice.dart';
+import 'components/rounded_button.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'iCare'),
+      home: MyHomePage(title: 'iCare - Drugs Recommender System'),
     );
   }
 }
@@ -60,6 +61,10 @@ void _handleCommand(Map<String, dynamic> command) {
             Text(
               'Hello, Alan',
             ),
+            RoundedButton(
+              text: 'Hello',
+              press: () {},
+            )
           ],
         ),
       ),
