@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:adobe_xd/blend_mask.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:adobe_xd/adobe_xd.dart';
 
 class XDiCareHome extends StatelessWidget {
   XDiCareHome({
