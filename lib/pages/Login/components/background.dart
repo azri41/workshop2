@@ -3,24 +3,25 @@ import 'package:flutter/material.dart';
 class Background extends StatelessWidget {
   final Widget child;
   const Background({
-    Key key, 
-    this.child,
+    Key key,
+    @required this.child,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size; 
+    Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height,
       width: double.infinity,
+      height: size.height,
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
           Positioned(
-            top: 200,
+            bottom: 0,
+            right: 0,
             child: Image.asset(
-              "assets/images/Logo.png",
-              width: size.width * 0.5,
+              "assets/images/Alan.png",
+              width: size.width * 0.4,
             ),
           ),
           child,

@@ -2,28 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:workshop2/components/textField.dart';
 import 'package:workshop2/constants.dart';
 
-class InputField extends StatelessWidget {
-  final String hintText;
-  final IconData icon;
+class PasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
-  const InputField({
+  const PasswordField({
     Key key,
-    this.hintText,
-    this.icon,
-    this.onChanged, Icon prefixIcon,
+    this.onChanged,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
+        obscureText: true,
         onChanged: onChanged,
+        cursorColor: uiPrimaryColor,
         decoration: InputDecoration(
-        icon :Icon(
-          icon,
-          color: uiSecondaryColor,
-        ),
-          hintText: hintText, 
+          hintText: "Password",
+          icon: Icon(
+            Icons.lock,
+            color: uiPrimaryColor,
+          ),
+          suffixIcon: Icon(
+            Icons.visibility,
+            color: uiPrimaryColor,
+          ),
           border: InputBorder.none,
         ),
       ),

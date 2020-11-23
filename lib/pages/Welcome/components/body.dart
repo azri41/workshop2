@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workshop2/constants.dart';
 import 'package:workshop2/components/rounded_button.dart';
-import 'package:workshop2/pages/login.dart';
+import 'package:workshop2/pages/Login/login_screen.dart';
+import 'package:workshop2/pages/SignUp/signup_screen.dart';
 import 'background.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,15 +16,10 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "WELCOME TO ICARE",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "WELCOME TO iCARE",
+              style: TextStyle(fontFamily: 'Comfortaa'),
             ),
-            SizedBox(height: size.height * 0.05),
-            SvgPicture.asset(
-              "assets/icons/home.svg",
-              height: size.height * 0.45,
-            ),
-            SizedBox(height: size.height * 0.05),
+            SizedBox(height: size.height * 0.5),
             RoundedButton(
               text: "LOGIN",
               press: () {
@@ -31,11 +27,11 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return Login();
+                      return LoginScreen();
                     },
                   ),
                 );
-              }, size: null,
+              },
             ),
             RoundedButton(
               text: "SIGN UP",
@@ -46,11 +42,11 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return null;
+                      return SignUpScreen();
                     },
                   ),
                 );
-              }, size: null,
+              },
             ),
           ],
         ),
