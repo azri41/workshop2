@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop2/components/Sidebar/sidebar_layout.dart';
 import 'package:workshop2/components/haveAccountCheck.dart';
 import 'package:workshop2/components/inputField.dart';
 import 'package:workshop2/components/passwordField.dart';
@@ -40,7 +41,17 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "LOGIN",
-              press: () {},
+              press: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      // return Home();
+                      return SideBarLayout();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             HaveAnAccountCheck(

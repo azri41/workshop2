@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             SvgPicture.asset(
-              "assets/icons/home.svg",
+              "assets/icons/register.svg",
               height: size.height * 0.35,
             ),
             InputField(

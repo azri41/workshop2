@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:alan_voice/alan_voice.dart';
 import 'package:workshop2/constants.dart';
 import 'package:workshop2/pages/Login/login_screen.dart';
+import 'package:workshop2/pages/Medicine/medicine_screen.dart';
 import 'package:workshop2/pages/home.dart';
 import 'package:workshop2/pages/loading.dart';
 import 'package:workshop2/pages/Welcome/welcome_screen.dart';
@@ -13,6 +13,8 @@ void main() => runApp(MaterialApp(
     '/home': (context) => Home(),
     '/welcome': (context) => WelcomeScreen(),
     '/login': (context) => LoginScreen(), 
+    // '/order': (context) => OrderScreen(),
+    '/medicine': (context) => MedicineScreen(),    
   }
 ));
 
