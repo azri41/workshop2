@@ -1,10 +1,11 @@
 import 'package:alan_voice/alan_voice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
 import 'package:workshop2/constants.dart';
 import 'package:workshop2/pages/Medicine/medicine_screen.dart';
-
+import 'dart:async';
 import 'CategoryCard.dart';
 import 'ProductCard.dart';
 
@@ -14,6 +15,8 @@ class Home extends StatefulWidget with NavigationStates{
 }
 
 class _HomeState extends State<Home> {
+  int _cameraOcr = FlutterMobileVision.CAMERA_BACK;
+  String _textValue = "sample";
 
   _HomeState() {
 	  AlanVoice.addButton("41fa2d9354cc9718100d1127c5b3af092e956eca572e1d8b807a3e2338fdd0dc/stage");
@@ -123,7 +126,7 @@ class _HomeState extends State<Home> {
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FlatButton(
-                onPressed: () {},
+                onPressed: _read,
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 22),
                 color: uiSecondaryColor,
                 splashColor: uiPrimaryColor,
@@ -147,6 +150,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
+            Text(_textValue),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -229,6 +233,22 @@ class _HomeState extends State<Home> {
       //   ),
       // ),
     );
+  }
+
+  Future<Null> _read() async {
+    List<OcrText> texts = [];
+    try {
+      texts = await FlutterMobileVision.read(
+        camera: _cameraOcr,
+        waitTap: true,
+      );
+
+      setState(() {
+        _textValue = texts[0].value;
+      });
+    } on Exception {
+      texts.add(new OcrText('Failed to recognize text.'));
+    }
   }
 }
 
