@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
+import 'package:workshop2/components/searchBar.dart';
 import 'package:workshop2/constants.dart';
 import 'package:workshop2/pages/Medicine/medicine_screen.dart';
 import 'dart:async';
@@ -46,6 +47,7 @@ class _HomeState extends State<Home> {
     Product('Eye Patch', "It is designed to prevent infections in eyes.",
         'assets/images/eyepatch.png', 300),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,9 +74,25 @@ class _HomeState extends State<Home> {
         //     ),
         //   ),
         // ),
+        // title: SearchBar(),
         actions: [
+          SearchBar(
+            hintText: _textValue,
+            onChanged: (_textValue) {},
+          ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+            return showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                // Retrieve the text the that user has entered by using the
+                // TextEditingController.
+                content: Text(_textValue),
+              );
+            },
+          );
+            },
             icon: Icon(
               Feather.search,
               color: uiLightColor,
@@ -150,7 +168,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Text(_textValue),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -240,7 +257,10 @@ class _HomeState extends State<Home> {
     try {
       texts = await FlutterMobileVision.read(
         camera: _cameraOcr,
-        waitTap: true,
+        // multiple: true,
+        // preview: Size(1280,720), //quality preview
+        fps: 15.0,
+        waitTap: true, 
       );
 
       setState(() {
