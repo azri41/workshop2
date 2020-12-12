@@ -1,178 +1,107 @@
-// import 'package:flutter/material.dart';
-// import 'package:workshop2/pages/Cart/cart_screen.dart';
-// import 'package:workshop2/pages/Medicine/medicine_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
+import 'package:workshop2/pages/Cart/cart_model.dart';
 
-// class OrderScreen extends StatefulWidget {
-//   OrderScreen({Key key, this.title}) : super(key: key);
-//   final String title;
+class OrderScreen extends StatefulWidget with NavigationStates{
+  @override
+  State<StatefulWidget> createState() {
+    return _OrderScreenState();
+  }
+}
 
-//   @override
-//   _OrderScreenState createState() => _OrderScreenState();
-// }
-
-// class _OrderScreenState extends State<OrderScreen> {
-//   List<Medicine> _medicines = List<Medicine>();
-
-//   List<Medicine> _cartList = List<Medicine>();
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _populateMedicines();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Order'),
-//         actions: <Widget>[
-//           Padding(
-//             padding: const EdgeInsets.only(right: 16.0, top: 8.0),
-//             child: GestureDetector(
-//               child: Stack(
-//                 alignment: Alignment.topCenter,
-//                 children: <Widget>[
-//                   Icon(
-//                     Icons.shopping_cart,
-//                     size: 36.0,
-//                   ),
-//                   if (_cartList.length > 0)
-//                     Padding(
-//                       padding: const EdgeInsets.only(left: 2.0),
-//                       child: CircleAvatar(
-//                         radius: 8.0,
-//                         backgroundColor: Colors.red,
-//                         foregroundColor: Colors.white,
-//                         child: Text(
-//                           _cartList.length.toString(),
-//                           style: TextStyle(
-//                             fontWeight: FontWeight.bold,
-//                             fontSize: 12.0,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                 ],
-//               ),
-//               onTap: () {
-//                 if (_cartList.isNotEmpty) {
-//                   Navigator.of(context).push(
-//                     MaterialPageRoute(
-//                       builder: (context) => Cart(_cartList),
-//                     ),
-//                   );
-//                 }
-//               },
-//             ),
-//           )
-//         ],
-//       ),
-//       body: _buildGridView(),
-//     );
-//   }
-
-
-//   GridView _buildGridView() {
-//     return GridView.builder(
-//         padding: const EdgeInsets.all(4.0),
-//         gridDelegate:
-//             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-//         itemCount: _medicines.length,
-//         itemBuilder: (context, index) {
-//           var item = _medicines[index];
-//           return Card(
-//               elevation: 4.0,
-//               child: Stack(
-//                 fit: StackFit.loose,
-//                 alignment: Alignment.center,
-//                 children: <Widget>[
-//                   Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: <Widget>[
-//                       Icon(
-//                         item.icon,
-//                         color: (_cartList.contains(item))
-//                             ? Colors.grey
-//                             : item.color,
-//                         size: 100.0,
-//                       ),
-//                       Text(
-//                         item.name,
-//                         textAlign: TextAlign.center,
-//                         style: Theme.of(context).textTheme.subtitle1
-//                       )
-//                     ],
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.only(
-//                       right: 8.0,
-//                       bottom: 8.0,
-//                     ),
-//                     child: Align(
-//                       alignment: Alignment.bottomRight,
-//                       child: GestureDetector(
-//                         child: (!_cartList.contains(item))
-//                             ? Icon(
-//                                 Icons.add_circle,
-//                                 color: Colors.green,
-//                               )
-//                             : Icon(
-//                                 Icons.remove_circle,
-//                                 color: Colors.red,
-//                               ),
-//                         onTap: () {
-//                           setState(() {
-//                             if (!_cartList.contains(item))
-//                               _cartList.add(item);
-//                             else
-//                               _cartList.remove(item);
-//                           });
-//                         },
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ));
-//         });
-//   }
-
-//   void _populateMedicines() {
-//     var list = <Medicine>[
-//       Medicine(
-//         name: 'Panadol Childrens Suspension 1-6 Years ',
-//         price: 'RM 8',
-//         icon: Icons.medical_services,
-//         color: Colors.lightBlue,
-//       ),
-//       Medicine(
-//         name: 'Prospan Cough Syrup ',
-//         price: 'RM 17',
-//         icon: Icons.medical_services,
-//         color: Colors.lightBlue,
-//       ),
-//       Medicine(
-//         name: 'Hurix 600 Flu Cough Syrup ',
-//         price: 'RM 13',
-//         icon: Icons.medical_services,
-//         color: Colors.lightBlue,
-//       ),
-//       Medicine(
-//         name: 'Hyland’s Kids Tummy Ache Tablets ',
-//         price: 'RM 47',
-//         icon: Icons.medical_services,
-//         color: Colors.lightBlue,
-//       ),
-//       Medicine(
-//         name: 'Sambucol Kids Liquid ',
-//         price: 'RM 30',
-//         icon: Icons.medical_services,
-//         color: Colors.lightBlue,
-//       ),
-//     ];
-
-//     setState(() {
-//       _medicines = list;
-//     });
-//   }
-// }
+class _OrderScreenState extends State<OrderScreen> {
+  @override
+  Widget build(BuildContext context) {
+    // ignore: todo
+    // TODO: implement build
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.indigo,
+          title: Text("Cart"),
+          actions: <Widget>[
+            FlatButton(
+                child: Text(
+                  "Clear",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () => ScopedModel.of<CartModel>(context).clearCart())
+          ],
+        ),
+        body: ScopedModel.of<CartModel>(context, rebuildOnChange: true)
+                    .cart
+                    .length ==
+                0
+            ? Center(
+                child: Text("No items in Cart"),
+              )
+            : Container(
+                padding: EdgeInsets.all(8.0),
+                child: Column(children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: ScopedModel.of<CartModel>(context,
+                              rebuildOnChange: true)
+                          .total,
+                      itemBuilder: (context, index) {
+                        return ScopedModelDescendant<CartModel>(
+                          builder: (context, child, model) {
+                            return ListTile(
+                              title: Text(model.cart[index].title),
+                              subtitle: Text(model.cart[index].qty.toString() +
+                                  " x " +
+                                  model.cart[index].price.toString() +
+                                  " = " +
+                                  (model.cart[index].qty *
+                                          model.cart[index].price)
+                                      .toString()),
+                              trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(Icons.add),
+                                      onPressed: () {
+                                        model.updateProduct(model.cart[index],
+                                            model.cart[index].qty + 1);
+                                        // model.removeProduct(model.cart[index]);
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: Icon(Icons.remove),
+                                      onPressed: () {
+                                        model.updateProduct(model.cart[index],
+                                            model.cart[index].qty - 1);
+                                        // model.removeProduct(model.cart[index]);
+                                      },
+                                    ),
+                                  ]),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Total: \RM " +
+                            ScopedModel.of<CartModel>(context,
+                                    rebuildOnChange: true)
+                                .totalCartValue
+                                .toString() +
+                            "",
+                        style: TextStyle(
+                            fontSize: 24.0, fontWeight: FontWeight.bold),
+                      )),
+                  SizedBox(
+                      width: double.infinity,
+                      child: RaisedButton(
+                        color: Colors.yellow[900],
+                        textColor: Colors.white,
+                        elevation: 0,
+                        child: Text("BUY NOW"),
+                        onPressed: () {},
+                      ))
+                ])));
+  }
+}

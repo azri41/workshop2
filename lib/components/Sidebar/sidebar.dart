@@ -117,14 +117,14 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
                         },
                       ),
-                      // MenuItem(
-                      //   icon: Icons.shopping_basket,
-                      //   title: "My Orders",
-                      //   onTap: () {
-                      //     onIconPressed();
-                      //     BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
-                      //   },
-                      // ),
+                      MenuItem(
+                        icon: Icons.shopping_basket,
+                        title: "My Orders",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
+                        },
+                      ),
                       MenuItem(
                         icon: Icons.card_giftcard,
                         title: "Wishlist",

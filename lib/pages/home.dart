@@ -7,7 +7,11 @@ import 'package:workshop2/components/searchBar.dart';
 import 'package:workshop2/constants.dart';
 import 'package:workshop2/pages/Medicine/medicine_screen.dart';
 import 'dart:async';
+import 'AdultMedicine/amedicine_screen.dart';
+import 'Cart/cart_screen.dart';
 import 'CategoryCard.dart';
+import 'ChildMedicine/cmedicine_screen.dart';
+import 'Order/order_screen.dart';
 import 'ProductCard.dart';
 
 class Home extends StatefulWidget with NavigationStates{
@@ -179,15 +183,15 @@ class _HomeState extends State<Home> {
                     fontSize: 20,
                   ),
                 ),
-                Text(
-                  'View all',
-                  style: TextStyle(
-                    color: uiLightColor,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
+                // Text(
+                //   'View all',
+                //   style: TextStyle(
+                //     color: uiLightColor,
+                //     fontSize: 15,
+                //     fontWeight: FontWeight.bold,
+                //     decoration: TextDecoration.underline,
+                //   ),
+                // ),
               ],
             ),
             SizedBox(height: 15),
@@ -197,17 +201,55 @@ class _HomeState extends State<Home> {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: [
-                  CategoryCard(
-                    title: 'FirstAid',
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) {
+                          return AMedicineScreen();
+                        },
+                      ),
+                    );
+                    },
+                    child: CategoryCard(
+                    title: 'Adult Medicines',
                     icon: MaterialCommunityIcons.medical_bag,
+                    ),
                   ),
-                  CategoryCard(
-                    title: 'Medicines',
-                    icon: MaterialCommunityIcons.pill,
+
+                  FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) {
+                          return CMedicineScreen();
+                        },
+                      ),
+                    );
+                      },
+                      child: CategoryCard(
+                      title: 'Kids Medicines',
+                      icon: Feather.activity,
+                      ),
                   ),
-                  CategoryCard(
-                    title: 'HealthCare',
-                    icon: Feather.activity,
+
+                    FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) {
+                          return CartScreen();
+                        },
+                      ),
+                    );
+                      },
+                      child: CategoryCard(
+                      title: 'Cart',
+                      icon: Feather.activity,
+                      ),
                   ),
                 ],
               ),

@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:workshop2/pages/Medicine/medicine_screen.dart';
+import 'package:workshop2/pages/Order/order_screen.dart';
+import 'package:workshop2/pages/Profile/profile_screen.dart';
 import 'package:workshop2/pages/home.dart';
 
 enum NavigationEvents {
   HomePageClickedEvent,
   MyAccountClickedEvent,
-  // MyOrdersClickedEvent,
+  MyOrdersClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -21,11 +22,11 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield Home();
         break;
       case NavigationEvents.MyAccountClickedEvent:
-        yield MedicineScreen();
+        yield ProfileScreen();
         break;
-      // case NavigationEvents.MyOrdersClickedEvent:
-      //   yield Order();
-      //   break;
+      case NavigationEvents.MyOrdersClickedEvent:
+        yield OrderScreen();
+        break;
     }
   }
 }

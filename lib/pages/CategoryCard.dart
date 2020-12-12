@@ -18,7 +18,7 @@ class CategoryCard extends StatelessWidget {
       width: 125,
       margin: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: uiPrimaryColor,
+        color: uiSecondaryColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -33,15 +33,15 @@ class CategoryCard extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: uiLightColor,
+            color: Colors.black,
             size: 40,
           ),
           SizedBox(height: 5),
           Text(
             title,
             style: TextStyle(
-              color: uiLightColor,
-              fontSize: 18,
+              color: Colors.black,
+              fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
           ),
