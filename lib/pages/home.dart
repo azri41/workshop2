@@ -13,6 +13,7 @@ import 'CategoryCard.dart';
 import 'ChildMedicine/cmedicine_screen.dart';
 import 'Order/order_screen.dart';
 import 'ProductCard.dart';
+import 'package:workshop2/services/auth.dart';
 
 class Home extends StatefulWidget with NavigationStates{
   @override
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
     Product('Eye Patch', "It is designed to prevent infections in eyes.",
         'assets/images/eyepatch.png', 300),
   ];
-
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,8 +91,7 @@ class _HomeState extends State<Home> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
+                // Retrieve the text that user has entered 
                 content: Text(_textValue),
               );
             },
@@ -231,7 +231,7 @@ class _HomeState extends State<Home> {
                       },
                       child: CategoryCard(
                       title: 'Kids Medicines',
-                      icon: Feather.activity,
+                      icon: MaterialCommunityIcons.pill,
                       ),
                   ),
 

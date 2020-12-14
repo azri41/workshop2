@@ -7,12 +7,18 @@ import 'package:workshop2/components/rounded_button.dart';
 import 'package:workshop2/pages/Login/components/background.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:workshop2/pages/SignUp/signup_screen.dart';
+import 'package:workshop2/services/auth.dart';
 
-class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+class Body extends StatefulWidget {
+  // const Body({
+  //   Key key,
+  // }) : super(key: key);
+  @override
+  _BodyState createState() => _BodyState();
+}
 
+class _BodyState extends State<Body> {
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +47,37 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "LOGIN",
-              press: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      // return Home();
-                      return SideBarLayout();
-                    },
-                  ),
-                );
-              },
+              // press: () {
+              //     Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) {
+              //         // return Home();
+              //         return SideBarLayout();
+              //       },
+              //     ),
+              //   );
+              // },
+              press: () async{
+                dynamic result = await _auth.loginAnon();
+                if (result == null){
+                  print('Error login!!');
+                } else {
+                  print('Logged in!!!');
+                  print(result.uid);
+                  Navigator.pop(
+                  context);
+
+                //   Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return SideBarLayout();
+                //     },
+                //   ),
+                // );
+                }
+              }
             ),
             SizedBox(height: size.height * 0.03),
             HaveAnAccountCheck(

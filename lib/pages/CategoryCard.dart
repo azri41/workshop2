@@ -16,7 +16,7 @@ class CategoryCard extends StatelessWidget {
     return Container(
       height: 125,
       width: 125,
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      // margin: EdgeInsets.symmetric(horizontal: 0),
       decoration: BoxDecoration(
         color: uiSecondaryColor,
         borderRadius: BorderRadius.circular(20),

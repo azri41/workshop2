@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:workshop2/services/auth.dart';
 
 import 'navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
@@ -18,6 +19,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   Stream<bool> isSidebarOpenedStream;
   StreamSink<bool> isSidebarOpenedSink;
   final _animationDuration = const Duration(milliseconds: 500);
+
+  final AuthService _auth = AuthService();
 
   @override
   void initState() {
@@ -143,6 +146,9 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",
+                        onTap: () async{
+                          await _auth.signOut();
+                        },
                       ),
                     ],
                   ),

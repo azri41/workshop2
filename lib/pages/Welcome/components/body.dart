@@ -6,7 +6,12 @@ import 'package:workshop2/pages/SignUp/signup_screen.dart';
 import 'background.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size; //this size provide total height and width of screen
@@ -27,7 +32,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return Login();
                     },
                   ),
                 );
