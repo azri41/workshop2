@@ -9,12 +9,13 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
+          centerTitle: true,
           title: new Text(
             "Adult's Medicine List",
             style: new TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87),
+                color: uiLightColor),
           ),
         ),
         body: new Padding(

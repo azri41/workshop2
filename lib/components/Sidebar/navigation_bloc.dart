@@ -1,14 +1,15 @@
 import 'package:bloc/bloc.dart';
+import 'package:workshop2/pages/Dialogflow/icarebot.dart';
 import 'package:workshop2/pages/Order/order_screen.dart';
 import 'package:workshop2/pages/Profile/profile_screen.dart';
 import 'package:workshop2/pages/home.dart';
-import 'package:workshop2/services/auth.dart';
+
 
 enum NavigationEvents {
   HomePageClickedEvent,
   MyAccountClickedEvent,
   MyOrdersClickedEvent,
-  // SignOutClickedEvent,
+  ChatClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -31,9 +32,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.MyOrdersClickedEvent:
         yield OrderScreen();
         break;
-      // case NavigationEvents.SignOutClickedEvent:
-      //   yield await _auth.signOut();
-      //   break;
+      case NavigationEvents.ChatClickedEvent:
+        yield ICareBot();
+        break;
     }
   }
 }

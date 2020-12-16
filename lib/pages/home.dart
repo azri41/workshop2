@@ -1,18 +1,17 @@
-import 'package:alan_voice/alan_voice.dart';
+// import 'package:alan_voice/alan_voice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
 import 'package:workshop2/components/searchBar.dart';
 import 'package:workshop2/constants.dart';
-import 'package:workshop2/pages/Dialogflow/icarebot.dart';
+import 'package:workshop2/pages/Cart/cart_screen.dart';
 import 'package:workshop2/pages/Medicine/medicine_screen.dart';
 import 'dart:async';
 import 'AdultMedicine/amedicine_screen.dart';
 import 'CategoryCard.dart';
 import 'ChildMedicine/cmedicine_screen.dart';
 import 'ProductCard.dart';
-import 'package:workshop2/services/auth.dart';
 
 class Home extends StatefulWidget with NavigationStates{
   @override
@@ -23,10 +22,10 @@ class _HomeState extends State<Home> {
   int _cameraOcr = FlutterMobileVision.CAMERA_BACK;
   String _textValue = "sample";
 
-  _HomeState() {
-	  AlanVoice.addButton("41fa2d9354cc9718100d1127c5b3af092e956eca572e1d8b807a3e2338fdd0dc/stage");
-    // AlanVoice.callbacks.add((command) => _handleCommand(command.data));
-  }
+  // _HomeState() {
+	//   AlanVoice.addButton("41fa2d9354cc9718100d1127c5b3af092e956eca572e1d8b807a3e2338fdd0dc/stage");
+  //   // AlanVoice.callbacks.add((command) => _handleCommand(command.data));
+  // }
 
   // void _handleCommand(Map<String, dynamic> command) {
 // 	//call client code that will react to the received command
@@ -51,7 +50,7 @@ class _HomeState extends State<Home> {
     Product('Eye Patch', "It is designed to prevent infections in eyes.",
         'assets/images/eyepatch.png', 300),
   ];
-  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -240,14 +239,14 @@ class _HomeState extends State<Home> {
                         context,
                         MaterialPageRoute(
                         builder: (context) {
-                          return ICareBot();
+                          return CartScreen();
                         },
                       ),
                     );
                       },
                       child: CategoryCard(
-                      title: 'Chatbot',
-                      icon: Feather.message_circle,
+                      title: 'Cart',
+                      icon: Feather.shopping_cart,
                       ),
                   ),
                 ],

@@ -1,8 +1,9 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
 
-class ICareBot extends StatefulWidget {
+class ICareBot extends StatefulWidget with NavigationStates{
   @override
   _ICareBotState createState() => _ICareBotState();
 }
@@ -61,7 +62,7 @@ class _ICareBotState extends State<ICareBot> {
     _textController.clear();
     ChatMessage message = new ChatMessage(
       text: text,
-      name: "Promise",
+      name: "User",
       type: true,
     );
     setState(() {
@@ -75,7 +76,7 @@ class _ICareBotState extends State<ICareBot> {
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
-        title: new Text("Flutter and Dialogflow"),
+        title: new Text("iCare Bot"),
       ),
       body: new Column(children: <Widget>[
         new Flexible(

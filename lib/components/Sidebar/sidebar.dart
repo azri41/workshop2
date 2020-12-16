@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:workshop2/services/auth.dart';
 
@@ -128,10 +129,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
                         },
                       ),
-                      MenuItem(
-                        icon: Icons.card_giftcard,
-                        title: "Wishlist",
-                      ),
+
                       Divider(
                         height: 64,
                         thickness: 0.5,
@@ -140,8 +138,12 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         endIndent: 32,
                       ),
                       MenuItem(
-                        icon: Icons.settings,
-                        title: "Settings",
+                        icon: Feather.message_circle,
+                        title: "Chat with us",
+                        onTap: () {
+                          onIconPressed();
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.ChatClickedEvent);
+                        },
                       ),
                       MenuItem(
                         icon: Icons.exit_to_app,

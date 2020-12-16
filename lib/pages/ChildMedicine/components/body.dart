@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../cmedicine_screen.dart';
 
 class Body extends StatelessWidget {
@@ -9,12 +10,13 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
+          centerTitle: true,
           title: new Text(
             "Kid's Medicine List",
             style: new TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87),
+                color: uiLightColor ),
           ),
         ),
         body: new Padding(

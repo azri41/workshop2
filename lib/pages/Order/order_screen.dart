@@ -19,6 +19,7 @@ class _OrderScreenState extends State<OrderScreen> {
         appBar: AppBar(
           backgroundColor: Colors.indigo,
           title: Text("Cart"),
+          centerTitle: true,
           actions: <Widget>[
             FlatButton(
                 child: Text(

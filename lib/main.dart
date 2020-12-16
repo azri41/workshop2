@@ -4,12 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:workshop2/constants.dart';
 import 'package:workshop2/pages/Cart/cart_model.dart';
-import 'package:workshop2/pages/Login/login_screen.dart';
-import 'package:workshop2/pages/Medicine/medicine_screen.dart';
-import 'package:workshop2/pages/Order/order_screen.dart';
-import 'package:workshop2/pages/home.dart';
-import 'package:workshop2/pages/loading.dart';
-import 'package:workshop2/pages/Welcome/welcome_screen.dart';
 import 'package:workshop2/pages/wrapper.dart';
 import 'package:workshop2/services/auth.dart';
 

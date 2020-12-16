@@ -10,19 +10,19 @@ class Body extends StatelessWidget {
         id: 1,
         title: "Panadol Children's Suspension 1-6 Years",
         price: 8,
-        imgUrl: "https://drive.google.com/file/d/1-bzfdw8EyuzLhKCICR91bFezz0GMKkUL/view?usp=sharing",
+        imgUrl: "https://img.icons8.com/cotton/2x/avocado.png",
         qty: 1),
     Item(
         id: 2,
         title: "Axcel Paracetamol 500mg",
         price: 7,
-        imgUrl: "assets/images/Logo.png",
+        imgUrl: "https://img.icons8.com/cotton/2x/watermelon.png",
         qty: 1),
     Item(
         id: 3,
         title: "Prospan Cough Syrup",
         price: 17,
-        imgUrl: "assets/images/adult_cough.jpg",
+        imgUrl: "https://img.icons8.com/cotton/2x/watermelon.png",
         qty: 1),
     Item(
         id: 4,
@@ -50,7 +50,8 @@ class Body extends StatelessWidget {
       backgroundColor: Colors.indigo[50],
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        title: Text("Home"),
+        centerTitle: true,
+        title: Text("Buy Items"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_cart),
