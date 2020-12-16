@@ -5,13 +5,12 @@ import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
 import 'package:workshop2/components/searchBar.dart';
 import 'package:workshop2/constants.dart';
+import 'package:workshop2/pages/Dialogflow/icarebot.dart';
 import 'package:workshop2/pages/Medicine/medicine_screen.dart';
 import 'dart:async';
 import 'AdultMedicine/amedicine_screen.dart';
-import 'Cart/cart_screen.dart';
 import 'CategoryCard.dart';
 import 'ChildMedicine/cmedicine_screen.dart';
-import 'Order/order_screen.dart';
 import 'ProductCard.dart';
 import 'package:workshop2/services/auth.dart';
 
@@ -241,14 +240,14 @@ class _HomeState extends State<Home> {
                         context,
                         MaterialPageRoute(
                         builder: (context) {
-                          return CartScreen();
+                          return ICareBot();
                         },
                       ),
                     );
                       },
                       child: CategoryCard(
-                      title: 'Cart',
-                      icon: Feather.activity,
+                      title: 'Chatbot',
+                      icon: Feather.message_circle,
                       ),
                   ),
                 ],
