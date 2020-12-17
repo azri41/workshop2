@@ -6,51 +6,88 @@ import 'package:workshop2/pages/SignUp/components/background.dart';
 import 'package:workshop2/components/haveAccountCheck.dart';
 import 'package:workshop2/components/rounded_button.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:workshop2/services/auth.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+
+  //text field state
+  String email = '';
+  String password = '';
+  String error = '';
+  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "SIGNUP",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
-              "assets/icons/register.svg",
-              height: size.height * 0.35,
-            ),
-            InputField(
-              hintText: "Your Email",
-              onChanged: (value) {},
-            ),
-            PasswordField(
-              onChanged: (value) {},
-            ),
-            RoundedButton(
-              text: "SIGNUP",
-              press: () {},
-            ),
-            SizedBox(height: size.height * 0.03),
-            HaveAnAccountCheck(
-              login: false,
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Login();
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "SIGNUP",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: size.height * 0.03),
+              SvgPicture.asset(
+                "assets/icons/register.svg",
+                height: size.height * 0.35,
+              ),
+              InputField(
+                hintText: "Your Email",
+                onChanged: (value) {
+                  setState(() => email = value);
+                },
+              ),
+              PasswordField(
+                onChanged: (value) {
+                  setState(() => password = value); 
+                },
+              ),
+              RoundedButton(
+                text: "SIGNUP",
+                press: () async{
+                  if(_formKey.currentState.validate()){
+                    dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                    if(result == null){
+                      setState(() => error = 'Please supply a valid email');
+                    }
+                    else{
+                      Navigator.pop(
+                      context);
+                    }
+                  }
+                },
+              ),
+              SizedBox(height: 12.0),
+              Text(
+                error,
+                style: TextStyle(color: Colors.red, fontSize: 14.0),
+              ),
+              SizedBox(height: size.height * 0.03),
+              HaveAnAccountCheck(
+                login: false,
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Login();
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

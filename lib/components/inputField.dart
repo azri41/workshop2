@@ -16,7 +16,8 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
+        validator: (value) => value.isEmpty ? 'Enter an email' : null,
         onChanged: onChanged,
         decoration: InputDecoration(
         icon :Icon(

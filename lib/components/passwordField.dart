@@ -12,8 +12,9 @@ class PasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
+      child: TextFormField(
         obscureText: true,
+        validator: (value) => value.length < 6 ? 'Enter a password more than 6 characters long' : null,        
         onChanged: onChanged,
         cursorColor: uiPrimaryColor,
         decoration: InputDecoration(
