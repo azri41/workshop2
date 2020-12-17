@@ -10,37 +10,37 @@ class Body extends StatelessWidget {
         id: 1,
         title: "Panadol Children's Suspension 1-6 Years",
         price: 8,
-        imgUrl: "https://img.icons8.com/cotton/2x/avocado.png",
+        imgUrl: "https://bit.ly/3r8JFuz",
         qty: 1),
     Item(
         id: 2,
         title: "Axcel Paracetamol 500mg",
         price: 7,
-        imgUrl: "https://img.icons8.com/cotton/2x/watermelon.png",
+        imgUrl: "https://bit.ly/3msoqAx",
         qty: 1),
     Item(
         id: 3,
         title: "Prospan Cough Syrup",
         price: 17,
-        imgUrl: "https://img.icons8.com/cotton/2x/watermelon.png",
+        imgUrl: "https://bit.ly/3nuqdq5",
         qty: 1),
     Item(
         id: 4,
         title: "Ubat Batuk Cap Ibu Dan Anak (NIN JIOM PEI PA KOA)",
         price: 8,
-        imgUrl: "https://img.icons8.com/cotton/2x/watermelon.png",
+        imgUrl: "https://bit.ly/3r8rc1t",
         qty: 1),
     Item(
         id: 5,
         title: "FLU: Hurix's 600 Flu Cough Syrup",
         price: 13,
-        imgUrl: "https://img.icons8.com/cotton/2x/avocado.png",
+        imgUrl: "https://bit.ly/3nvctez",
         qty: 1),
     Item(
         id: 6,
         title: "HURIX'S 600 FLUAWAY CAPSULE IMPROVED",
         price: 8,
-        imgUrl: "https://img.icons8.com/cotton/2x/avocado.png",
+        imgUrl: "https://bit.ly/3r0p6k9",
         qty: 1),
   ];
 

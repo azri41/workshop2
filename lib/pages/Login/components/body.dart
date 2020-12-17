@@ -70,17 +70,6 @@ class _BodyState extends State<Body> {
                     }
                   }
                 },
-                // press: () async{
-                //   dynamic result = await _auth.loginAnon();
-                //   if (result == null){
-                //     print('Error login!!');
-                //   } else {
-                //     print('Logged in!!!');
-                //     print(result.uid);
-                //     Navigator.pop(
-                //     context);
-                //   }
-                // }
               ),
               SizedBox(height: 12.0),
               Text(
