@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:workshop2/components/inputField.dart';
 import 'package:workshop2/components/passwordField.dart';
 import 'package:workshop2/pages/Login/login_screen.dart';
+import 'package:workshop2/pages/SignUp/DetailsForm/register_form.dart';
 import 'package:workshop2/pages/SignUp/components/background.dart';
 import 'package:workshop2/components/haveAccountCheck.dart';
 import 'package:workshop2/components/rounded_button.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:workshop2/pages/loading.dart';
 import 'package:workshop2/services/auth.dart';
 
 class Body extends StatefulWidget {
@@ -16,6 +18,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //text field state
   String email = '';
@@ -25,7 +28,7 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Background(
+    return loading ? Loading() : Background(
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -56,13 +59,23 @@ class _BodyState extends State<Body> {
                 text: "SIGNUP",
                 press: () async{
                   if(_formKey.currentState.validate()){
+                    setState(() => loading = true);
                     dynamic result = await _auth.registerWithEmailAndPassword(email, password);
                     if(result == null){
-                      setState(() => error = 'Please supply a valid email');
+                      setState((){
+                        error = 'Please supply a valid email';
+                        loading = false;
+                      });
                     }
                     else{
-                      Navigator.pop(
-                      context);
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return RegisterForm();
+                      },
+                    ),
+                  );
                     }
                   }
                 },

@@ -6,6 +6,7 @@ import 'package:workshop2/components/rounded_button.dart';
 import 'package:workshop2/pages/Login/components/background.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:workshop2/pages/SignUp/signup_screen.dart';
+import 'package:workshop2/pages/loading.dart';
 import 'package:workshop2/services/auth.dart';
 
 class Body extends StatefulWidget {
@@ -19,6 +20,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //text field state
   String email = '';
@@ -28,7 +30,7 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Background(
+    return loading ? Loading() : Background(
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -60,9 +62,13 @@ class _BodyState extends State<Body> {
                 text: "LOGIN",
                 press: () async{
                   if(_formKey.currentState.validate()){
+                    setState(() => loading = true);
                     dynamic result = await _auth.loginWithEmailAndPassword(email, password);
                     if(result == null){
-                      setState(() => error = 'Could not sign in with those credentials');
+                      setState((){
+                        error = 'Could not sign in with those credentials';
+                        loading = false;
+                      });
                     }
                     else{
                       Navigator.pop(

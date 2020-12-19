@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:workshop2/models/user.dart';
+import 'package:workshop2/services/database.dart';
 
 class AuthService{
 
@@ -50,6 +51,20 @@ class AuthService{
       print(e.toString());
       return null;
     }
+  }
+
+  //Register user details with same uid
+  Future registerUserDetails(String name, String phoneNum, String address) async {
+    try{
+      final User user = _auth.currentUser;
+
+      //create a new document for the user with the uid
+      await DatabaseService(uid: user.uid).updateUserData(name, phoneNum, address);
+      return _userFromFirebaseUser(user);
+    } catch(e){
+      print(e.toString());
+      return null;
+    }    
   }
 
   //Sign out

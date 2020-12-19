@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:workshop2/pages/Dialogflow/icarebot.dart';
 import 'package:workshop2/pages/Order/order_screen.dart';
 import 'package:workshop2/pages/Profile/profile_screen.dart';
-import 'package:workshop2/pages/home.dart';
+import 'package:workshop2/pages/Home/home.dart';
 
 
 enum NavigationEvents {
