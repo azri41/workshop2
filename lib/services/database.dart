@@ -19,7 +19,7 @@ class DatabaseService {
   }
 
   // user details form snapshot
-  List<UserInfo> _userInfoFromSnapshot(QuerySnapshot snapshot) {
+  List<UserInfo> _userDetailsFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc){
       return UserInfo(
         name: doc.data()['name'] ?? '',
@@ -29,10 +29,28 @@ class DatabaseService {
     }).toList();
   }
 
+  // user info from snapshot
+  UserInfo _userInfoFromSnapshot(DocumentSnapshot snapshot) {
+    return UserInfo(
+      uid:uid,
+      email: snapshot.data()['email'],
+      password: snapshot.data()['password'],
+      name: snapshot.data()['name'],      
+      phoneNum: snapshot.data()['phoneNum'], 
+      address: snapshot.data()['address'],
+    );
+  }
+
+  // get user doc stream
+  Stream<UserInfo> get userInfo {
+    return userCollection.doc(uid).snapshots()
+      .map(_userInfoFromSnapshot);
+  }
+  
   //get user stream
   Stream<List<UserInfo>> get users{
     return userCollection.snapshots()
-    .map(_userInfoFromSnapshot);
+    .map(_userDetailsFromSnapshot);
   }
 
 }

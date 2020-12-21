@@ -3,8 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:workshop2/models/userInfo.dart';
+import 'package:workshop2/pages/Home/userEmailSide.dart';
+import 'package:workshop2/pages/Home/userNameSide.dart';
 import 'package:workshop2/services/auth.dart';
+import 'package:workshop2/services/database.dart';
 
 import 'navigation_bloc.dart';
 import '../sidebar/menu_item.dart';
@@ -57,132 +62,126 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return StreamBuilder<bool>(
-      initialData: false,
-      stream: isSidebarOpenedStream,
-      builder: (context, isSideBarOpenedAsync) {
-        return AnimatedPositioned(
-          duration: _animationDuration,
-          top: 0,
-          bottom: 0,
-          left: isSideBarOpenedAsync.data ? 0 : -screenWidth,
-          right: isSideBarOpenedAsync.data ? 0 : screenWidth - 30,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: const Color(0xFF262AAA),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 100,
-                      ),
-                      ListTile(
-                        title: Text(
-                          "Azri",
-                          style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
+    return StreamProvider<List<UserInfo>>.value(
+      value: DatabaseService().users,
+          child: StreamBuilder<bool>(
+        initialData: false,
+        stream: isSidebarOpenedStream,
+        builder: (context, isSideBarOpenedAsync) {
+          return AnimatedPositioned(
+            duration: _animationDuration,
+            top: 0,
+            bottom: 0,
+            left: isSideBarOpenedAsync.data ? 0 : -screenWidth,
+            right: isSideBarOpenedAsync.data ? 0 : screenWidth - 30,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    color: const Color(0xFF262AAA),
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 100,
                         ),
-                        subtitle: Text(
-                          "abc@gmail.com",
-                          style: TextStyle(
-                            color: Color(0xFF1BB5FD),
-                            fontSize: 18,
+                        ListTile(
+                          title: UserNameSide(),
+                          subtitle: UserEmailSide(),
+                          leading: CircleAvatar(
+                            child: Icon(
+                              Icons.perm_identity,
+                              color: Colors.white,
+                            ),
+                            radius: 40,
                           ),
                         ),
-                        leading: CircleAvatar(
-                          child: Icon(
-                            Icons.perm_identity,
-                            color: Colors.white,
-                          ),
-                          radius: 40,
+                        Divider(
+                          height: 64,
+                          thickness: 0.5,
+                          color: Colors.white.withOpacity(0.3),
+                          indent: 32,
+                          endIndent: 32,
                         ),
-                      ),
-                      Divider(
-                        height: 64,
-                        thickness: 0.5,
-                        color: Colors.white.withOpacity(0.3),
-                        indent: 32,
-                        endIndent: 32,
-                      ),
-                      MenuItem(
-                        icon: Icons.home,
-                        title: "Home",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.person,
-                        title: "My Account",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.shopping_basket,
-                        title: "My Orders",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
-                        },
-                      ),
+                        MenuItem(
+                          icon: Icons.home,
+                          title: "Home",
+                          onTap: () {
+                            onIconPressed();
+                            BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);
+                          },
+                        ),
+                        MenuItem(
+                          icon: Icons.person,
+                          title: "My Account",
+                          onTap: () {
+                            onIconPressed();
+                            BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
+                          },
+                        ),
+                        MenuItem(
+                          icon: Icons.shopping_basket,
+                          title: "My Orders",
+                          onTap: () {
+                            onIconPressed();
+                            BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
+                          },
+                        ),
 
-                      Divider(
-                        height: 64,
-                        thickness: 0.5,
-                        color: Colors.white.withOpacity(0.3),
-                        indent: 32,
-                        endIndent: 32,
-                      ),
-                      MenuItem(
-                        icon: Feather.message_circle,
-                        title: "Chat with us",
-                        onTap: () {
-                          onIconPressed();
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.ChatClickedEvent);
-                        },
-                      ),
-                      MenuItem(
-                        icon: Icons.exit_to_app,
-                        title: "Logout",
-                        onTap: () async{
-                          await _auth.signOut();
-                        },
-                      ),
-                    ],
+                        Divider(
+                          height: 64,
+                          thickness: 0.5,
+                          color: Colors.white.withOpacity(0.3),
+                          indent: 32,
+                          endIndent: 32,
+                        ),
+                        MenuItem(
+                          icon: Feather.message_circle,
+                          title: "Chat with us",
+                          onTap: () {
+                            onIconPressed();
+                            BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.ChatClickedEvent);
+                          },
+                        ),
+                        MenuItem(
+                          icon: Icons.exit_to_app,
+                          title: "Logout",
+                          onTap: () async{
+                            await _auth.signOut();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment(0, -0.9),
-                child: GestureDetector(
-                  onTap: () {
-                    onIconPressed();
-                  },
-                  child: ClipPath(
-                    clipper: CustomMenuClipper(),
-                    child: Container(
-                      width: 35,
-                      height: 110,
-                      color: Color(0xFF262AAA),
-                      alignment: Alignment.centerLeft,
-                      child: AnimatedIcon(
-                        progress: _animationController.view,
-                        icon: AnimatedIcons.menu_close,
-                        color: Color(0xFF1BB5FD),
-                        size: 25,
+                Align(
+                  alignment: Alignment(0, -0.9),
+                  child: GestureDetector(
+                    onTap: () {
+                      onIconPressed();
+                    },
+                    child: ClipPath(
+                      clipper: CustomMenuClipper(),
+                      child: Container(
+                        width: 35,
+                        height: 110,
+                        color: Color(0xFF262AAA),
+                        alignment: Alignment.centerLeft,
+                        child: AnimatedIcon(
+                          progress: _animationController.view,
+                          icon: AnimatedIcons.menu_close,
+                          color: Color(0xFF1BB5FD),
+                          size: 25,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

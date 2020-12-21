@@ -12,6 +12,7 @@ import 'package:workshop2/pages/Cart/cart_screen.dart';
 import 'package:workshop2/pages/CategoryCard.dart';
 import 'package:workshop2/pages/ChildMedicine/cmedicine_screen.dart';
 import 'package:workshop2/pages/Home/userAddress.dart';
+import 'package:workshop2/pages/Home/userEmail.dart';
 import 'package:workshop2/pages/Home/userName.dart';
 import 'package:workshop2/pages/Medicine/medicine_screen.dart';
 import 'package:workshop2/pages/ProductCard.dart';
