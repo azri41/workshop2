@@ -13,8 +13,7 @@ class OrderScreen extends StatefulWidget with NavigationStates{
 class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
-    // ignore: todo
-    // TODO: implement build
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.indigo,

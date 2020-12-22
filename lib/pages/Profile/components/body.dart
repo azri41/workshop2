@@ -23,7 +23,6 @@ class _BodyState extends State<Body> {
 
   final _formKey = GlobalKey<FormState>();
   String _currentEmail;
-  String _currentPassword;
   String _currentName;
   String _currentPhoneNum;
   String _currentAddress;
@@ -127,8 +126,21 @@ class _BodyState extends State<Body> {
                                                                         
                   RoundedButton(
                     text: "UPDATE",
-                    press: () {
-                      
+                    press: () async {
+                      if(_formKey.currentState.validate()){
+                        await DatabaseService(uid: user.uid).updateUserData(
+                          _currentName ?? snapshot.data.name, 
+                          _currentPhoneNum ?? snapshot.data.phoneNum, 
+                          _currentAddress?? snapshot.data.address
+                        );
+                      Navigator.push(context, 
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Wrapper();
+                            },
+                          ),
+                      );
+                      }
                     },
                   ),
                   RoundedButton(

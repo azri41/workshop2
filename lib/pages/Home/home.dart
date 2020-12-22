@@ -6,16 +6,15 @@ import 'package:provider/provider.dart';
 import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
 import 'package:workshop2/components/searchBar.dart';
 import 'package:workshop2/constants.dart';
+import 'package:workshop2/models/user.dart';
 import 'package:workshop2/models/userInfo.dart';
 import 'package:workshop2/pages/AdultMedicine/amedicine_screen.dart';
 import 'package:workshop2/pages/Cart/cart_screen.dart';
 import 'package:workshop2/pages/CategoryCard.dart';
 import 'package:workshop2/pages/ChildMedicine/cmedicine_screen.dart';
-import 'package:workshop2/pages/Home/userAddress.dart';
-import 'package:workshop2/pages/Home/userEmail.dart';
-import 'package:workshop2/pages/Home/userName.dart';
 import 'package:workshop2/pages/Medicine/medicine_screen.dart';
 import 'package:workshop2/pages/ProductCard.dart';
+import 'package:workshop2/pages/loading.dart';
 import 'package:workshop2/services/database.dart';
 import 'dart:async';
 
@@ -61,9 +60,18 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
-    return StreamProvider<List<UserInfo>>.value(
-      value: DatabaseService().users,
-        child: Scaffold(
+    final user = Provider.of<TheUser>(context);
+
+    return StreamBuilder<UserInfo>(
+      stream: DatabaseService(uid: user.uid).userInfo,
+      builder: (context, snapshot) {
+        if(snapshot.hasData){
+
+          UserInfo userInfo = snapshot.data;
+          String name = userInfo.name;
+          String address = userInfo.address;          
+
+        return Scaffold(
         backgroundColor: uiPrimaryColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -101,7 +109,14 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
-              UserName(),
+              Text(
+                    'Hi, $name !',
+                    style: TextStyle(
+                    color: uiLightColor,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    ),      
+                  ),
               SizedBox(height: 10),
               Text(
                 'Deliver to',
@@ -112,7 +127,14 @@ class _HomeState extends State<Home> {
               ),
               Row(
                 children: [
-                    UserAddress(),
+                Text(
+                      '$address',
+                      style: TextStyle(
+                      color: uiLightColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      ),      
+                    ),
                 ],
               ),
               SizedBox(height: 40),
@@ -245,7 +267,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        ),
+        );
         // floatingActionButton: FloatingActionButton(
         //   backgroundColor: uiSecondaryColor,
         //   splashColor: uiPrimaryColor,
@@ -263,6 +285,11 @@ class _HomeState extends State<Home> {
         //     size: 30,
         //   ),
         // ),
+        }
+        else {
+          return Loading();
+        }
+      }
     );
   }
 
@@ -285,33 +312,3 @@ class _HomeState extends State<Home> {
     }
   }
 }
-
-
-// class _HomeState extends State<Home> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Column(
-//           children: <Widget>[
-//             FlatButton.icon(
-//               onPressed: (){
-//                 Navigator.pushNamed(context, '/medicine');
-//               },
-//               icon: Icon(Icons.medical_services),
-//               label: Text('Medicine'),
-//             ),
-//             FlatButton.icon(
-//               onPressed: (){
-//                 Navigator.pushNamed(context, '/order');
-//               },
-//               icon: Icon(Icons.medical_services),
-//               label: Text('Order'),
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-

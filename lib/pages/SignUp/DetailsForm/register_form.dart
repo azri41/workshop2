@@ -62,7 +62,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   ),
                    TextFieldContainer(
                       child:  TextFormField(                       
-                          validator: (value) => value.length < 10 ? 'Enter 10 or more number' : null, 
+                          validator: (value) => value.length < 10  ? 'Enter 10 or more number'  : value.length > 11 ? 'Invalid phone number' : null, 
                           onChanged: (value) {
                           setState(() => phoneNum = value);
                         },                          

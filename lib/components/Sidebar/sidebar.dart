@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:workshop2/constants.dart';
+import 'package:workshop2/models/user.dart';
 import 'package:workshop2/models/userInfo.dart';
 import 'package:workshop2/pages/Home/userEmailSide.dart';
-import 'package:workshop2/pages/Home/userNameSide.dart';
+import 'package:workshop2/pages/loading.dart';
 import 'package:workshop2/services/auth.dart';
 import 'package:workshop2/services/database.dart';
 
@@ -61,10 +63,17 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final user = Provider.of<TheUser>(context);
+    
+    return StreamBuilder<UserInfo>(
+      stream: DatabaseService(uid: user.uid).userInfo,
+      builder: (context, snapshot) {
+        if(snapshot.hasData){
 
-    return StreamProvider<List<UserInfo>>.value(
-      value: DatabaseService().users,
-          child: StreamBuilder<bool>(
+          UserInfo userInfo = snapshot.data;
+          String name = userInfo.name;
+
+        return StreamBuilder<bool>(
         initialData: false,
         stream: isSidebarOpenedStream,
         builder: (context, isSideBarOpenedAsync) {
@@ -86,7 +95,14 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           height: 100,
                         ),
                         ListTile(
-                          title: UserNameSide(),
+                          title: Text(
+                            '$name',
+                            style: TextStyle(
+                            color: uiLightColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            ),      
+                          ),
                           subtitle: UserEmailSide(),
                           leading: CircleAvatar(
                             child: Icon(
@@ -181,7 +197,11 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
             ),
           );
         },
-      ),
+      );
+            } else {
+          return Loading();
+        }
+      },
     );
   }
 }
