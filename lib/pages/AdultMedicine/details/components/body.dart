@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+import 'package:workshop2/constants.dart';
+import 'package:workshop2/models/AMedicine.dart';
+
+import 'description.dart';
+import 'product_title_with_image.dart';
+
+class Body extends StatelessWidget {
+  final AMedicine aMedicine;
+
+  const Body({Key key, this.aMedicine}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    // It provide us total height and width
+    Size size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: size.height,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  padding: EdgeInsets.only(
+                    top: size.height * 0.30,
+                    left: kDefaultPaddin,
+                    right: kDefaultPaddin,
+                  ),
+                  // height: 500,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24),
+                      topRight: Radius.circular(24),
+                    ),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      //ColorAndSize(product: cMedicine),
+                      SizedBox(height: kDefaultPaddin / 2),
+                      Description(aMedicine: aMedicine),
+                      SizedBox(height: kDefaultPaddin / 2),
+                      //CounterWithFavBtn(),
+                      SizedBox(height: kDefaultPaddin / 2),
+                      //AddToCart(product: product)
+                    ],
+                  ),
+                ),
+                ProductTitleWithImage(aMedicine: aMedicine)
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
