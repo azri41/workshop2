@@ -184,6 +184,7 @@ class _ICareBotState extends State<ICareBot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           "iCare Bot",

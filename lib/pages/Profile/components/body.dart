@@ -22,7 +22,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
 
   final _formKey = GlobalKey<FormState>();
-  String _currentEmail;
+
   String _currentName;
   String _currentPhoneNum;
   String _currentAddress;

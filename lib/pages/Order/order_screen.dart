@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:workshop2/components/Sidebar/navigation_bloc.dart';
 import 'package:workshop2/pages/Cart/cart_model.dart';
+import 'package:workshop2/pages/Payment/payment_screen.dart';
 
 class OrderScreen extends StatefulWidget with NavigationStates{
   @override
@@ -16,6 +17,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.indigo,
           title: Text("Cart"),
           centerTitle: true,
@@ -93,14 +95,23 @@ class _OrderScreenState extends State<OrderScreen> {
                         style: TextStyle(
                             fontSize: 24.0, fontWeight: FontWeight.bold),
                       )),
+                      Text("+ Including delivery fee RM10"),
                   SizedBox(
                       width: double.infinity,
                       child: RaisedButton(
                         color: Colors.yellow[900],
                         textColor: Colors.white,
                         elevation: 0,
-                        child: Text("BUY NOW"),
-                        onPressed: () {},
+                        child: Text("PROCEED TO PAY"),
+                        onPressed: () {
+                          Navigator.push(context, 
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return PaymentScreen();
+                            },
+                          ),
+                      );
+                        },
                       ))
                 ])));
   }

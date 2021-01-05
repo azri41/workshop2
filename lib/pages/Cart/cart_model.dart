@@ -45,7 +45,7 @@ class CartModel extends Model {
   void calculateTotal() {
     totalCartValue = 0;
     cart.forEach((f) {
-      totalCartValue += f.price * f.qty;
+      totalCartValue += f.price * f.qty + 10;
     });
   }
 }

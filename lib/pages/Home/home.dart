@@ -47,14 +47,14 @@ class _HomeState extends State<Home> {
 
   List<Product> products = [
     Product('Surgical Mask', "It is designed to prevent infections.",
-        'assets/images/mask.png', 160),
+        'assets/images/mask.png', 200),
     Product(
-        'Black n95 Mask',
-        "It is n95 mask designed to prevent infections in patients.",
+        'Black N95 Mask',
+        "It is N95 mask designed to prevent infections in patients.",
         'assets/images/black_mask.png',
         250),
-    Product('Eye Patch', "It is designed to prevent infections in eyes.",
-        'assets/images/eyepatch.png', 300),
+    Product('Hand Sanitizer', "It is designed to prevent germs from you.",
+        'assets/images/hand_sanitizer.png', 300),
   ];
 
   @override
@@ -122,7 +122,7 @@ class _HomeState extends State<Home> {
                 'Deliver to',
                 style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 15,
+                  fontSize: 15,fontWeight: FontWeight.bold,
                 ),
               ),
               Row(
@@ -173,7 +173,7 @@ class _HomeState extends State<Home> {
                     'Categories',
                     style: TextStyle(
                       color: uiLightColor,
-                      fontSize: 20,
+                      fontSize: 20,fontWeight: FontWeight.bold,
                     ),
                   ),
                   // Text(
@@ -252,7 +252,7 @@ class _HomeState extends State<Home> {
                 "Today's deals",
                 style: TextStyle(
                   color: uiLightColor,
-                  fontSize: 20,
+                  fontSize: 20,fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 15),

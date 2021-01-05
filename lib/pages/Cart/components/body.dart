@@ -42,6 +42,24 @@ class Body extends StatelessWidget {
         price: 8,
         imgUrl: "https://bit.ly/3r0p6k9",
         qty: 1),
+    Item(
+        id: 7,
+        title: "Face Mask (50 pcs)",
+        price: 40,
+        imgUrl: "https://bit.ly/3ngWNdZ",
+        qty: 1),
+    Item(
+        id: 8,
+        title: "Black N95 Mask",
+        price: 5,
+        imgUrl: "https://bit.ly/3nnzXBK",
+        qty: 1),
+    Item(
+        id: 9,
+        title: "Dettol Instant Hand Sanitizer Original 200ml",
+        price: 8,
+        imgUrl: "https://bit.ly/2LrbhdW",
+        qty: 1),
   ];
 
   @override

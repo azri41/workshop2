@@ -20,6 +20,7 @@ class SideBar extends StatefulWidget {
   @override
   _SideBarState createState() => _SideBarState();
 }
+  final AuthService _auth = AuthService();
 
 class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<SideBar> {
   AnimationController _animationController;
@@ -28,7 +29,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
   StreamSink<bool> isSidebarOpenedSink;
   final _animationDuration = const Duration(milliseconds: 500);
 
-  final AuthService _auth = AuthService();
+
 
   @override
   void initState() {
@@ -163,7 +164,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                           icon: Icons.exit_to_app,
                           title: "Logout",
                           onTap: () async{
-                            await _auth.signOut();
+                            // await _auth.signOut();
+                            await _asyncConfirmDialog(context);
                           },
                         ),
                       ],
@@ -230,3 +232,32 @@ class CustomMenuClipper extends CustomClipper<Path> {
     return true;
   }
 }
+
+//Confirmation logout
+enum ConfirmAction { Cancel, Accept}  
+Future<ConfirmAction> _asyncConfirmDialog(BuildContext context) async {  
+  return showDialog<ConfirmAction>(  
+    context: context,  
+    barrierDismissible: false, // user must tap button for close dialog!  
+    builder: (BuildContext context) {  
+      return AlertDialog(  
+        title: Text('Are you sure to logout?'),   
+        actions: <Widget>[  
+          FlatButton(  
+            child: const Text('No'),  
+            onPressed: () {  
+              Navigator.of(context).pop(ConfirmAction.Cancel);  
+            },  
+          ),  
+          FlatButton(  
+            child: const Text('Yes'),  
+            onPressed: () async {  
+              await _auth.signOut();
+              Navigator.of(context).pop(ConfirmAction.Accept);  
+            },  
+          )  
+        ],  
+      );  
+    },  
+  );  
+} 
