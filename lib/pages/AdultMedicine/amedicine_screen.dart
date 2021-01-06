@@ -21,25 +21,6 @@ class AMedicineScreen extends StatelessWidget {
         icon: SvgPicture.asset("assets/icons/back.svg"),
         onPressed: () => Navigator.pop(context),
       ),
-      //actions: <Widget>[
-      //  IconButton(
-      //    icon: SvgPicture.asset(
-      //      "assets/icons/search.svg",
-      //      // By default our  icon color is white
-      //      color: kTextColor,
-      //    ),
-      //    onPressed: () {},
-      //  ),
-      //  IconButton(
-      //    icon: SvgPicture.asset(
-      //      "assets/icons/cart.svg",
-      //      // By default our  icon color is white
-      //      color: kTextColor,
-      //    ),
-      //    onPressed: () {},
-      //  ),
-      //  SizedBox(width: kDefaultPaddin / 2)
-      //],
     );
   }
 }

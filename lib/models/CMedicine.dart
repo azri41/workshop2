@@ -50,7 +50,7 @@ List<CMedicine> cMedicine = [
   CMedicine(
       id: 5,
       title: "Sambucol Kids Liquid ",
-      price: 234,
+      price: 70,
       //size: 12,
       description: dummyText5,
       image: "assets/images/kid_vitamin.jpg",

@@ -46,18 +46,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
           padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 40.0, bottom: 10.0),
           child: Column(
             children: <Widget>[
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: <Widget>[
-              //     Text("Subtotal"),
-              //     Text("RM " + ScopedModel.of<CartModel>(context,
-              //           rebuildOnChange: true)
-              //       .totalCartValue
-              //       .toString() +
-              //   "",),
-              //   ],
-              // ),
-              // SizedBox(height: 10.0,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Total item(s) price"),
+                  Text("RM " + ScopedModel.of<CartModel>(context,
+                        rebuildOnChange: true)
+                    .totalCartValue
+                    .toString() +
+                "",),
+                ],
+              ),
+              SizedBox(height: 10.0,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -69,10 +69,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Total", style: Theme.of(context).textTheme.headline6,),
+                  Text("Subtotal", style: Theme.of(context).textTheme.headline6,),
                   Text("RM "+ScopedModel.of<CartModel>(context,
                         rebuildOnChange: true)
-                    .totalCartValue
+                    .subTotal
                     .toString() +
                 "", style: Theme.of(context).textTheme.headline6),
                 ],

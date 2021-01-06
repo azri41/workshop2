@@ -14,6 +14,7 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SearchFieldContainer(
       child: TextField(
+        readOnly: true,
         onChanged: onChanged,
         decoration: InputDecoration(
           hintText: hintText,

@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 class CartModel extends Model {
   List<Item> cart = [];
   double totalCartValue = 0;
+  double subTotal = 0;
 
   int get total => cart.length;
 
@@ -44,9 +45,11 @@ class CartModel extends Model {
 
   void calculateTotal() {
     totalCartValue = 0;
+    subTotal = 0;
     cart.forEach((f) {
-      totalCartValue += f.price * f.qty + 10;
+      totalCartValue += f.price * f.qty ;
     });
+      subTotal += totalCartValue + 10;
   }
 }
 

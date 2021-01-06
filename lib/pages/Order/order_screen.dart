@@ -95,7 +95,6 @@ class _OrderScreenState extends State<OrderScreen> {
                         style: TextStyle(
                             fontSize: 24.0, fontWeight: FontWeight.bold),
                       )),
-                      Text("+ Including delivery fee RM10"),
                   SizedBox(
                       width: double.infinity,
                       child: RaisedButton(
