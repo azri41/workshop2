@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   alan_voice: 2.0.7
-  flutter_launcher_icons: "^0.7.3"
+  # flutter_launcher_icons: "^0.7.3"
   flutter_svg: ^0.18.0
   flutter_icons: ^1.1.0
   flutter_bloc: ^2.1.1
